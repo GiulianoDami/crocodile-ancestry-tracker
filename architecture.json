@@ -1,0 +1,37 @@
+{
+    "language": "Go",
+    "dependency_file": "go.mod",
+    "dependencies": ["github.com/spf13/cobra"],
+    "files": [
+        {
+            "path": "cmd/root.go",
+            "description": "Root command for the CLI application",
+            "exports": ["func Execute() error"]
+        },
+        {
+            "path": "internal/analysis/analyze.go",
+            "description": "DNA analysis logic for specimen data",
+            "exports": ["func AnalyzeSpecimens(specimens []Specimen) ([]Result, error)"]
+        },
+        {
+            "path": "internal/compare/compare.go",
+            "description": "Compare genetic markers between populations",
+            "exports": ["func ComparePopulations(pop1, pop2 []Specimen) (float64, error)"]
+        },
+        {
+            "path": "internal/report/report.go",
+            "description": "Generate lineage reports from analyzed data",
+            "exports": ["func GenerateReport(results []Result, outputPath string) error"]
+        },
+        {
+            "path": "internal/types/specimen.go",
+            "description": "Data structures for specimens and genetic markers",
+            "exports": ["type Specimen struct", "type Result struct"]
+        },
+        {
+            "path": "main.go",
+            "description": "Main entry point for the application",
+            "imports_from_other_files": ["cmd/root.go", "internal/analysis/analyze.go", "internal/compare/compare.go", "internal/report/report.go", "internal/types/specimen.go"]
+        }
+    ]
+}
